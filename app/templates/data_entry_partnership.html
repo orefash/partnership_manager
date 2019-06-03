@@ -1,0 +1,408 @@
+{% extends "base.html" %}
+{% block title %}Partnership Entry{% endblock %}
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Partnership Entry
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Data Entry</a></li>
+        <li class="active">Partnership</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+  {% import "bootstrap/utils.html" as utils %}
+  {% import "bootstrap/wtf.html" as wtf %}
+      <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+
+        <div class="col-md-8 col-md-offset-2">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Partnership Form</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" action="{{ url_for('admin.enter_partnership') }}" method="post">
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="titleInput">Title</label>
+                      {{ form.title(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="titleInput" placeholder="Enter title"> -->
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="surnameInput">Surname</label>
+                      {{ form.surname(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="surnameInput" placeholder="Enter surname"> -->
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="fnameInput">First Name</label>
+                      {{ form.fname(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="fnameInput" placeholder="Enter first name"> -->
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="phoneInput">Phone number</label>
+                      {{ form.phone(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="phoneInput" placeholder="Enter phone number"> -->
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="emailInput">Email</label>
+                      {{ form.email(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="emailInput" placeholder="Enter email"> -->
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputGroup">Group</label>
+                      <select id="group"  name="group" class="form-control">
+                        {% for group in groups %}
+                        <option value="{{ group[0] }}">{{ group[1] }}</option>
+                        {% endfor %}
+                      </select>
+                      <!-- <input type="text" class="form-control" id="inputGroup" placeholder="Enter Group" value="ISLAND 2 GROUP"> -->
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputChurch">Church</label>
+                      <select id="church"  name="church" class="form-control">
+                      <!--   {% for pcf in pcfs %}
+                        <option value="{{ pcf[0] }}">{{ pcf[1] }}</option>
+                        {% endfor %} -->
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputPcf">PCF</label>
+                      <select id="pcf"  name="pcf" class="form-control">
+                        {% for pcf in pcfs %}
+                        <option value="{{ pcf[0] }}">{{ pcf[1] }}</option>
+                        {% endfor %}
+                      </select>
+                      <!-- <input type="text" class="form-control" id="inputPcf" placeholder="Enter PCF"> -->
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputCell">Cell</label>
+                      <select id="cell"  name="cell" class="form-control">
+                      <!--   {% for pcf in pcfs %}
+                        <option value="{{ pcf[0] }}">{{ pcf[1] }}</option>
+                        {% endfor %} -->
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="kchatInput">Kingschat Number</label>
+                      {{ form.kchat(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="kchatInput" placeholder="Enter kingschat no."> -->
+                    </div>
+                  </div>
+
+
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Giving / Pledge</label>
+                      <select id="grp"  name="grp" class="form-control">
+                        <option value="0">Giving</option>
+                        <option value="1">Pledge</option>
+                      </select>
+                    </div>
+                  </div>
+                 <!--  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Payment Method</label>
+                      <select class="form-control">
+                        <option>Cash</option>
+                        <option>Cheque</option>
+                        <option>POS</option>
+                      </select>
+                    </div>
+                  </div> -->
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Partnership Arm</label>
+                      <select id="arm"  name="arm" class="form-control">
+                        {% for arm in parms %}
+                        <option value="{{ arm[0] }}">{{ arm[1] }}</option>
+                        {% endfor %}
+
+                      </select>
+                    </div>
+                  </div>
+
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="amountInput">Amount</label>
+                      {{ form.amount(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="amountInput" placeholder="Enter Amount"> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div id="myExtraDiv">
+                  <input type="hidden" name="field_count" id="field_count" value='0'>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="text-right">
+                            <button type="button" id="add_arm" class="btn btn-success"><i class="fa fa-plus"></i> Add Partnership</button>
+
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                      {{ form.submit(class_="btn btn-primary btn-large") }}
+
+                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+
+    </section>
+    <!-- /.content -->
+
+
+    <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+    <script>
+
+
+      function getValue(){
+
+        var option_items = '';
+         var value= $.ajax({
+            url: '/get-arms',
+            async: false
+         }).responseJSON;
+         // return value;
+
+        $.each(value, function(key, val) {
+            var option_item = '<option value="' + val[0] + '">' + val[1] + '</option>'
+                 // console.log(option_item);
+            option_items += option_item;
+                 // option_arr.push(option_item);
+        });
+
+        return option_items;
+
+      }
+
+      $(document).ready(function() {
+        var max_fields      = 10; //maximum input boxes allowed
+        var wrapper       = $('#myExtraDiv'); //Fields wrapper
+        var add_button      = $("#add_arm"); //Add button ID
+        var field_count = $("#field_count");
+
+        var remove_tag = '<button type="button" class="btn btn-danger btn-xs remove_field"><i class="fa fa-remove"></i></button>';
+        var x = 0;
+
+        // var option_items = '';
+        var option_arr = getValue();
+
+        // console.log("Outside: "+option_arr);
+
+         //initlal text box count
+        $(add_button).click(function(e){ //on add input button click
+          console.log("adding "+x);
+          x++;
+
+          e.preventDefault();
+          field_count.val(x);
+          // if(x < max_fields){ //max input box allowed
+          //   console.log('allowed');
+             //text box increment
+            $(wrapper).append(
+              `
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Partnership Arm</label>
+              <select id="arm`+x+`"  name="arm`+x+`" class="form-control">
+              `
+              + option_arr+
+              `
+
+              </select>
+            </div>
+          </div>
+
+           <div class="col-md-5">
+            <div class="form-group">
+              <label for="amountInput">Amount</label>
+              <input type="text" class="form-control" name="amount`+x+`" id="amount`+x+`" placeholder="Enter Amount">
+            </div>
+          </div>
+
+          <div class="col-md-1 d-flex justify-content-center align-items-center">
+
+          `
+          +remove_tag+
+          `
+          </div>
+        </div>
+
+        `
+
+            ); //add input box
+
+          // }
+        });
+
+        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+          e.preventDefault(); $(this).parent('div').parent('div').remove();
+          x = x -1;
+          console.log('Removing: x= '+x);
+
+          field_count.val(x);
+        })
+      });
+
+    </script>
+
+    <script text="text/javascript">
+      var fpcf = $('#pcf').val();
+      var fgrp = $('#group').val();
+
+
+      console.log('Grp: + Pcf: '+fgrp+ ' ' + fpcf);
+
+      // Make Ajax Request and expect JSON-encoded data
+          $.getJSON(
+            '/get-cell' + '/' + fpcf,
+            function(data) {
+
+              // Remove old options
+              $('#cell').find('option').remove();
+
+              // Add new items
+              $.each(data, function(key, val) {
+                var option_item = '<option value="' + val[0] + '">' + val[1] + '</option>'
+                $('#cell').append(option_item);
+              });
+            }
+          );
+
+          $.getJSON(
+            '/get-church' + '/' + fgrp,
+            function(data) {
+
+              // Remove old options
+              $('#church').find('option').remove();
+
+              // Add new items
+              $.each(data, function(key, val) {
+                var option_item = '<option value="' + val[0] + '">' + val[1] + '</option>'
+                $('#church').append(option_item);
+              });
+            }
+          );
+
+      $(document).ready(function() {
+        console.log("In entry");
+        $('#pcf').change(function(event) {
+          console.log("Source: "+event.target.id);
+
+          var pcf = $('#pcf').val();
+          console.log("pcf: "+pcf);
+
+          // Make Ajax Request and expect JSON-encoded data
+          $.getJSON(
+            '/get-cell' + '/' + pcf,
+            function(data) {
+
+              // Remove old options
+              $('#cell').find('option').remove();
+
+              // Add new items
+              $.each(data, function(key, val) {
+                var option_item = '<option value="' + val[0] + '">' + val[1] + '</option>'
+                $('#cell').append(option_item);
+              });
+            }
+          );
+        });
+
+
+
+        $('#group').change(function(event) {
+          console.log("Source: "+event.target.id);
+        // console.log("In side");
+
+          var group = $('#group').val();
+          console.log("group: "+group);
+          // Make Ajax Request and expect JSON-encoded data
+          $.getJSON(
+            '/get-church' + '/' + group,
+            function(data) {
+
+              // Remove old options
+              $('#church').find('option').remove();
+
+              // Add new items
+              $.each(data, function(key, val) {
+                var option_item = '<option value="' + val[0] + '">' + val[1] + '</option>'
+                $('#church').append(option_item);
+              });
+            }
+          );
+        });
+      });
+    </script>
+
+
+  {% endblock %}

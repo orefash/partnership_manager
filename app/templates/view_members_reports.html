@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}View Tithe{% endblock %}
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        CE IKOYI Partners
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> View Reports</a></li>
+        <li class="active">Members</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+
+         <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Partners</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="dataTable" class="table table-bordered table-striped display nowrap" style="width:100%">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>NAME</th>
+                  <th>PCF</th>
+                  <th>CELL</th>
+                  <th>PHONE</th>
+                  <th>EMAIL</th>
+                  <th>ACTION</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for member in members %}
+                  {% set outer_loop = loop %}
+                  <tr>
+
+                    {% for column in member %}
+
+                      {% if loop.index0 == 0 %}
+                        <td>
+                          {{ outer_loop.index }}
+                        </td>
+                      {% else %}
+                        <td>
+                          {{ column }}
+                        </td>
+                      {% endif %}
+
+                    {% endfor %}
+
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/reports/member/{{member[0]}}">View Report</a>
+                    </td>
+                  </tr>
+
+                {% endfor %}
+
+
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>#</th>
+                  <th>NAME</th>
+                  <th>PCF</th>
+                  <th>CELL</th>
+                  <th>PHONE</th>
+                  <th>EMAIL</th>
+                  <th>ACTION</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+
+          <!-- /.box -->
+        </div>
+      </div>
+
+
+    </section>
+    <!-- /.content -->
+
+
+
+{% endblock %}

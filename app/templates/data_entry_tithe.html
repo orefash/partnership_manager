@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block title %}Tithe Entry{% endblock %}
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Tithe Entry
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Data Entry</a></li>
+        <li class="active">Tithe</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+
+        <div class="col-md-8 col-md-offset-2">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tithe Form</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form">
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="titleInput">Title</label>
+                      <input type="text" class="form-control" id="titleInput" placeholder="Enter title">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="surnameInput">Surname</label>
+                      <input type="text" class="form-control" id="surnameInput" placeholder="Enter surname">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="fnameInput">First Name</label>
+                      <input type="text" class="form-control" id="fnameInput" placeholder="Enter first name">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="phoneInput">Phone number</label>
+                      <input type="number" class="form-control" id="phoneInput" placeholder="Enter phone number">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="emailInput">Email</label>
+                      <input type="email" class="form-control" id="emailInput" placeholder="Enter email">
+                    </div>
+                  </div>
+
+                </div>
+
+                 <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputGroup">Group</label>
+                      <input type="text" class="form-control" id="inputGroup" placeholder="Enter Group" value="ISLAND 2 GROUP">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputChurch">Church</label>
+                      <input type="text" class="form-control" id="inputChurch" placeholder="Enter Church" value="CE IKOYI">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputPcf">PCF</label>
+                      <input type="text" class="form-control" id="inputPcf" placeholder="Enter PCF">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputCell">Cell</label>
+                      <input type="text" class="form-control" id="inputCell" placeholder="Enter Cell">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="kchatInput">Kingschat Number</label>
+                      <input type="number" class="form-control" id="kchatInput" placeholder="Enter kingschat no.">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="amountInput">Amount</label>
+                      <input type="text" class="form-control" id="amountInput" placeholder="Enter Amount">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+
+    </section>
+    <!-- /.content -->
+  {% endblock %}
