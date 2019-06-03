@@ -4,8 +4,8 @@ import os
 
 from app import create_app
 
-config_name = 'development'
-# config_name = os.getenv('FLASK_CONFIG')
+# config_name = 'development'
+config_name = os.getenv('FLASK_CONFIG')
 app = create_app(config_name)
 
 
