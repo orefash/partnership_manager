@@ -25,28 +25,36 @@ class Staff(UserMixin, db.Model):
     tithe_givings = db.relationship('TitheGiving', backref='staff',
                                 lazy='dynamic')
 
-    @property
-    def password(self):
-        """
-        Prevent pasword from being accessed
-        """
-        raise AttributeError('password is not a readable attribute.')
+    # @property
+    # def password(self):
+    #     """
+    #     Prevent pasword from being accessed
+    #     """
+    #     raise AttributeError('password is not a readable attribute.')
 
-    @password.setter
-    def password(self, password):
-        """
-        Set password to a hashed password
-        """
-        self.password_hash = generate_password_hash(password)
+    # @password.setter
+    # def password(self, password):
+    #     """
+    #     Set password to a hashed password
+    #     """
+    #
+    #     self.password_hash = password
+        # self.password_hash = generate_password_hash(password)
 
     def verify_password(self, password):
         """
         Check if hashed password matches actual password
         """
-        return check_password_hash(self.password_hash, password)
+        print("Entered: ",password)
+        print("Stored: ",self.password_hash)
+        if password == self.password_hash:
+            return True
+        else:
+            return False
+        # return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
-        return '<Staff: {}>'.format(self.f_name +" "+ self.l_name)
+        return '<Staff: {}>'.format(self.f_name +" "+ self.password_hash)
 
 
 # Set up user_loader

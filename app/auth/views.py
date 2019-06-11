@@ -31,6 +31,7 @@ def user_login():
         print("Email ",email)
         staff = Staff.query.filter_by(email=email).first()
         print("Staff", staff)
+        print("Staff pass: ",staff.email)
         if staff is not None and staff.verify_password(password):
             # log employee in
             login_user(staff)
@@ -91,7 +92,7 @@ def user_register():
         l_name=ln,
         phone='0801234567',
         entry_date = datetime.today().strftime('%Y-%m-%d'),
-        password=form.password.data)
+        password_hash=form.password.data)
 
         # add employee to the database
         db.session.add(staff)
