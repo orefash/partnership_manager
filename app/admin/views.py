@@ -1,20 +1,29 @@
-from flask import flash, redirect, render_template, url_for
+from flask import flash, redirect, render_template, url_for, send_file, send_from_directory
 from flask_login import current_user, login_required
 from flask import request
 from flask import jsonify
 from sqlalchemy import or_
 from sqlalchemy import text
 
+import os, app
+
+# from app import app
+
 from . import admin
 from forms import PartnerDataEntry
 
 from datetime import datetime
-from .. import db
+from .. import db, APP_ROOT
 
 from ..models import Staff, Member, Group, Church, Pcf, Cell, PartnerGiving, PartnershipArm
 
 from data_helper import get_p_table_header, get_partnerships, get_partnership_data, get_partnership_data_by_date
 
+
+APP_ROOT = APP_ROOT
+# APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+D_FOLD = 'static/reports'
+D_FOLDER = os.path.join(APP_ROOT, D_FOLD)
 
 @admin.route('/get-church/<group>')
 def get_church(group):
@@ -135,6 +144,29 @@ def get_p_by_date(start, end):
     # print("response: ",data)
 
     return jsonify(data)
+
+
+@admin.route('/get-data-report')
+def get_data_report():
+    # print("root: ",root_dir)
+    # return root_dir
+
+    report_dir = os.path.join(APP_ROOT, 'static', 'reports')
+    report_dir_file = os.path.join(APP_ROOT, 'static', 'reports', 'CARD.png')
+    # report_dir = url_for('static', filename='reports/CARD.png')
+    # report_dir = D_FOLDER
+    print("static: ",report_dir_file)
+    # return "hello"
+
+    # if path is None:
+
+    try:
+        return send_file(report_dir_file, as_attachment=True)
+        # return send_from_directory(report_dir, filename='CARD.png', as_attachment=True)
+    except Exception as e:
+        print("exc: ",str(e))
+        return str(e)
+
 
 @admin.route('/data-view/partnership')
 @login_required

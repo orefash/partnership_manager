@@ -17,6 +17,8 @@ import os
 # db variable initialization
 db = SQLAlchemy()
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 # after the db variable initialization
 login_manager = LoginManager()
 
@@ -35,6 +37,8 @@ def create_app(config_name):
     # app.config.from_object(app_config[config_name])
     # app.config.from_pyfile('config.py')
 
+
+    # app.config['D_FOLDER'] = D_FOLDER
     Bootstrap(app)
     db.init_app(app)
 

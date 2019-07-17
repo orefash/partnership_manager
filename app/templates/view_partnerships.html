@@ -146,7 +146,24 @@
   <script src="{{ url_for('static', filename='bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 
   <script>
+
+
+
+
+  </script>
+
+  <script>
     $(function () {
+
+      $('#download-btn').click(function(e){ //on add input button click
+        console.log("adding ");
+        $.getJSON('/get-data-report',
+                function(data) {
+              //do nothing
+              console.log("download ");
+            });
+
+      });
 
         //Date range as a button
     $('#daterange-btn').daterangepicker(
@@ -190,8 +207,7 @@
             });
 
             $('#dataTable tbody').html(content);
-          }
-        );
+          });
           $("div.overlay").remove();
 
       }
