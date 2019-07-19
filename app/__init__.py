@@ -22,6 +22,13 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 # after the db variable initialization
 login_manager = LoginManager()
 
+chart_colors = [
+    "#f56954", "#00a65a", "#f39c12", "#00c0ef",
+    "#3c8dbc", "#FEDCBA", "#FDB45C", "#4169E1",
+    "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA",
+    "#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1",
+    "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]
+
 def create_app(config_name):
     if os.getenv('FLASK_CONFIG') == "production":
         app = Flask(__name__)
