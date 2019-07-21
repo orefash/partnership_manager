@@ -11,8 +11,11 @@ from config import app_config
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
+from flask_mail import Mail, Message
 
 import os
+
+# a = 9
 
 # db variable initialization
 db = SQLAlchemy()
@@ -44,7 +47,7 @@ def create_app(config_name):
     # app.config.from_object(app_config[config_name])
     # app.config.from_pyfile('config.py')
 
-
+    # a = 90
     # app.config['D_FOLDER'] = D_FOLDER
     Bootstrap(app)
     db.init_app(app)

@@ -14,6 +14,12 @@
           Send Reports <i class="fa fa-send"></i>
         </button>
         </li>
+        <li>
+          <a type="button" class="btn btn-success" id="mail-test" href="/member-mail">
+          Test Reports <i class="fa fa-send"></i>
+
+          </a>
+        </li>
         <li><a href="#"><i class="fa fa-database"></i> View Reports</a></li>
         <li class="active">Members</li>
       </ol>
@@ -105,6 +111,25 @@
     </section>
     <!-- /.content -->
 
+
+    <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+
+    <script>
+      $(function () {
+
+        $('#mail-all-btn').click(function(e){ //on add input button click
+          console.log("sending ");
+          $.getJSON('/send-member-report',
+                  function(data) {
+                //do nothing
+              });
+
+        });
+
+      })
+
+    </script>
 
 
 {% endblock %}

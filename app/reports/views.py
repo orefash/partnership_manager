@@ -1,9 +1,10 @@
 from flask import flash, redirect, render_template, url_for
 from flask_login import current_user, login_required
 from flask import request
-from flask import jsonify
+from flask import jsonify, current_app as app
 from sqlalchemy import or_
 from sqlalchemy import text
+from flask_mail import Mail,  Message
 
 from . import reports
 
@@ -23,6 +24,8 @@ from babel.numbers import format_currency
 @reports.route('/reports/members')
 @login_required
 def view_member_reports():
+
+    # print("test a: ", a)
 
     members = get_members_data()
     # print(memberss)
@@ -63,6 +66,66 @@ def view_member_report(m_id):
     print("arms: ",arms)
     # print('reasb: ',b)
     return render_template('partner_report.html', title="Partner Report", total_giving=total_giving, total_pledge=total_pledge, arms_count=arms_count, partner_data=partner_data, member_data=member_data, monthly_partnership=monthly_partnership)
+
+@reports.route('/member-mail')
+def member_mail():
+    m_id = 4
+    partner_data = get_member_partnership(m_id)
+    member_data = get_member_data(m_id)
+
+    return render_template('mails/partner-report.html', partner_data=partner_data, member_data=member_data)
+
+def send_async_email(app, msg):
+with app.app_context():
+    mail.send(msg)
+
+def send_email(to, subject, template, **kwargs):
+    app = current_app._get_current_object()
+    msg = Message(subject, sender=app.config['MAIL_SENDER'], recipients=[to])
+    msg.body = ''
+    msg.html = render_template(template + '.html', **kwargs)
+    thr = Thread(target=send_async_email, args=[app, msg])
+    thr.start()
+    return thr
+
+@reports.route('/send-member-report')
+@login_required
+def send_member_report():
+
+    m_id = 4
+    partner_data = get_member_partnership(m_id)
+    member_data = get_member_data(m_id)
+
+    print("Sending mail")
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = 'kingfash5@gmail.com'
+    MAIL_PASSWORD = 'AllHail1Me'
+
+    app.config.update(
+	DEBUG=True,
+	#EMAIL SETTINGS
+	MAIL_SERVER = 'smtp.gmail.com',
+    MAIL_PORT = 465,
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = 'kingfash5@gmail.com',
+    MAIL_PASSWORD = 'AllHail1Me'
+	)
+
+    mail = Mail(app)
+    msg = Message("Send Mail Tutorial!",
+      sender="kingfash5@gmail.com",
+      recipients=["orefash@gmail.com"])
+    msg.html = render_template('mails/partner-report.html', partner_data=partner_data, member_data=member_data)
+    msg.body = ""
+
+    try:
+        mail.send(msg)
+        return 'Mail sent!'
+    except Exception, e:
+		return(str(e))
+
 
 @reports.route('/reports/pcf/<m_id>')
 @login_required
