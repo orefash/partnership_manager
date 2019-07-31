@@ -72,6 +72,9 @@ def create_app(config_name):
     from .reports import reports as reports_blueprint
     app.register_blueprint(reports_blueprint)
 
+    from .staff_mgmt import staff_mgmt as staff_mgmt_blueprint
+    app.register_blueprint(staff_mgmt_blueprint)
+
     @app.errorhandler(404)
     def page_not_found(error):
         return render_template('errors/404.html', title='Page Not Found'), 404

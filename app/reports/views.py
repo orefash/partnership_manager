@@ -8,6 +8,8 @@ from flask_mail import Mail,  Message
 
 from . import reports
 
+from threading import Thread
+
 from datetime import datetime
 from .. import db, chart_colors
 
@@ -80,8 +82,8 @@ def send_async_email(app, msg):
         mail.send(msg)
 
 def send_email(to, subject, template, **kwargs):
-    app = current_app._get_current_object()
-    msg = Message(subject, sender=app.config['MAIL_SENDER'], recipients=[to])
+    # app = current_app._get_current_object()/
+    msg = Message(subject, sender="kingfash5@gmail.com", recipients=["orefash@gmail.com"])
     msg.body = ''
     msg.html = render_template(template + '.html', **kwargs)
     thr = Thread(target=send_async_email, args=[app, msg])

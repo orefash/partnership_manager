@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Partnership Entry{% endblock %}
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Create Staff Account
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Manage Staff</a></li>
+        <li class="active">Add Staff</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+  {% import "bootstrap/utils.html" as utils %}
+  {% import "bootstrap/wtf.html" as wtf %}
+      <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+
+        <div class="col-md-6 col-md-offset-3">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Add Staff</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" action="{{ url_for('staff_mgmt.add_staff') }}" method="post">
+              <div class="box-body">
+                <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="fnameInput">First Name</label>
+                    {{ form.fname(class_="form-control") }}
+                    <!-- <input type="text" class="form-control" id="fnameInput" placeholder="Enter first name"> -->
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="surnameInput">Surname</label>
+                      {{ form.surname(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="surnameInput" placeholder="Enter surname"> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                   <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Role</label>
+                      <select name="role" class="form-control">
+                        <option value="R01">Administrator</option>
+                        <option value="R02">Staff</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="phoneInput">Phone number</label>
+                      {{ form.phone(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="phoneInput" placeholder="Enter phone number"> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="emailInput">Email</label>
+                      {{ form.email(class_="form-control") }}
+                      <!-- <input type="text" class="form-control" id="emailInput" placeholder="Enter email"> -->
+                    </div>
+                  </div>
+
+                </div>
+
+
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                      {{ form.submit(class_="btn btn-primary btn-large") }}
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+
+    </section>
+    <!-- /.content -->
+
+
+    <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+    <script>
+
+
+
+    </script>
+
+    <script text="text/javascript">
+
+    </script>
+
+
+  {% endblock %}
