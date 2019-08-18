@@ -13,3 +13,16 @@ class StaffForm(FlaskForm):
     phone = StringField('Phone', validators=[DataRequired()] , render_kw={"placeholder": "Enter Phone number"})
     email = EmailField('Email', validators=[DataRequired(), Email()] , render_kw={"placeholder": "Enter Email"})
     submit = SubmitField('Submit')
+
+class PasswordForm(FlaskForm):
+    """
+    Form for users to create new account
+    """
+
+    old_password = PasswordField('Current Password', render_kw={"placeholder": "Current password"})
+    password = PasswordField('New Password', validators=[
+                                        DataRequired(),
+                                        EqualTo('confirm_password')
+                                        ], render_kw={"placeholder": "New password"})
+    confirm_password = PasswordField('Confirm Password', render_kw={"placeholder": "Retype new password"})
+    submit = SubmitField('Submit')
