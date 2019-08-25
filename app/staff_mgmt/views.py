@@ -103,3 +103,39 @@ def update_staff():
         return jsonify(result)
 
     return jsonify(result)
+
+@staff_mgmt.route('/update-password', methods=['GET', 'POST'])
+@login_required
+def update_password():
+    print("In update pass")
+
+    result = {
+        "status" : -1
+    }
+
+    if request.method == 'POST':
+
+        print("In update 2")
+        print("OLD PASS: ",request.form['old_pass'])
+        print("NEW PASS: ",request.form['new_pass'])
+        old_pass = request.form['old_pass']
+        new_pass = request.form['new_pass']
+
+
+        print("CU:",current_user)
+        sid = current_user.id
+        print("sid:",sid)
+
+        staff = Staff.query.filter_by(id=sid).first()
+        print("Staff: ",staff)
+        staff.email = email
+        staff.phone = phone
+        staff.f_name = fname
+        staff.l_name = surname
+
+        db.session.commit()
+        result["status"] = 0
+        # flash('You have successfully registered! You may now login.')
+        return jsonify(result)
+
+    return jsonify(result)

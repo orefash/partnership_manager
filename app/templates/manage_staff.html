@@ -9,11 +9,11 @@
   </h1>
   <ol class="breadcrumb">
       <li>
-        <a type="button" class="btn btn-warning" href="/add-staff">
+        <a class="btn btn-warning" href="/add-staff">
         Add Staff <i class="fa fa-plus"></i>
       </a>
     </li>
-    <li><a href="#"><i class="fa fa-database"></i> View Staff</a></li>
+    <li><a href="#"><i class="fa fa-database"></i> Manage Staff</a></li>
     <li class="active">Staff</li>
   </ol>
 </section>
@@ -64,7 +64,16 @@
                             {% endfor %}
 
                             <td>
-                                <a class="btn btn-danger btn-sm" href="/delete-staff/{{member[0]}}">Delete</a>
+                              {% if current_user.id == member[0] %}
+                                <a class="btn btn-danger btn-sm disabled" href="#">Delete</a>
+
+                              {% else %}
+
+                                <!-- <a class="btn btn-danger btn-sm" href="/delete-staff/{{member[0]}}">Delete</a> -->
+                                <button  onclick="test('{{member[0]}}','{{member[1]}}')"class="btn btn-danger btn-sm">Delete</button>
+                                <!-- <button data-toggle="modal" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete">Delete</button> -->
+
+                              {% endif %}
                             </td>
                           </tr>
 
@@ -92,5 +101,39 @@
 
     </section>
 
+
+        <div class="modal modal-danger fade" id="modal-delete">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delete Staff</h4>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete <span id="staff-name"> </span> from your system?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <a id="del-link" href="" class="btn btn-outline">Delete</a>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+
+            <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+            <script>
+              var test =function(value,name){
+                console.log(value, name);
+                var url = "/delete-staff/"+value;
+                $('#staff-name').html(name);
+                $('#del-link').attr("href", url);
+                $('#modal-delete').modal('toggle');
+              };
+            </script>
 
 {% endblock %}
