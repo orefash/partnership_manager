@@ -8,7 +8,7 @@
 </table>
 
 ## Demo
-Here is a working live demo :  http://kingfash.pythonanywhere.com
+Here is a working live demo :  http://kingfash.pythonanywhere.com (under maintenance)
 You can login using; email: admin@admin.com password: admin
 
 ## Technologies
